@@ -52,7 +52,7 @@ class VerifyOtpScreen extends StatelessWidget {
                       });
                   Navigator.push(context, MaterialPageRoute(
                     builder: (context) {
-                      return HomeScreen();
+                      return MainScreen();
                     },
                   ));
                 } else {
