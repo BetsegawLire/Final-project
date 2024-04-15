@@ -53,9 +53,14 @@ class _MachineryListScreenState extends State<MachineryListScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
+          Container(
+            height: 90,
+            width: double.infinity,
             child: Image.network(
-                "https://armada-server.glitch.me/api/machinery/Image/${machinery.image}"), // Display the tractor image
+              "https://armada-server.glitch.me/api/machinery/Image/${machinery.image}",
+              fit: BoxFit.fill,
+              // scale: 1.1,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -64,18 +69,30 @@ class _MachineryListScreenState extends State<MachineryListScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '${machinery.manufacturer}',
-                        style: TextStyle(fontSize: 12),
+                      SizedBox(
+                        // height: 50,
+                        width: MediaQuery.of(context).size.width * 0.2,
+                        child: Text(
+                          '${machinery.manufacturer}',
+                          style: TextStyle(fontSize: 12),
+                        ),
                       ),
-                      Text(
-                        '${machinery.type}',
-                        style: TextStyle(fontSize: 12),
+                      Expanded(
+                        child: SizedBox(
+                          // width: MediaQuery.of(context).size.width * 0.19,
+                          child: Text(
+                            '${machinery.type}',
+                            textAlign: TextAlign.end,
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
                       ),
                     ],
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         '${machinery.model}',
