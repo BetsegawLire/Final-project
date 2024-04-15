@@ -6,4 +6,5 @@ void main() {
     home: SignUpScreen(),
     debugShowCheckedModeBanner: false,
   ));
+  //Main page
 }
