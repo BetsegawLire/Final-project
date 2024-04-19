@@ -20,37 +20,37 @@ class Machinery {
 
 ////////////////////////////////
 
-// class Tractor {
-//   late String _id;
-//   late String ownerId;
-//   late String type;
-//   late String manufacturer;
-//   late String model;
-//   late String status;
-//   late int year;
-//   late int horsepower;
-//   late String hourMeter;
-//   late String region;
-//   late String image;
-//   late DateTime createdAt;
-//   late DateTime updatedAt;
+class Tractor {
+  late String _id;
+  late String ownerId;
+  late String type;
+  late String manufacturer;
+  late String model;
+  late String status;
+  late int year;
+  late int horsepower;
+  late String hourMeter;
+  late String region;
+  late String image;
+  late DateTime createdAt;
+  late DateTime updatedAt;
 
-//   Tractor(
-//     this._id,
-//     this.ownerId,
-//     this.type,
-//     this.manufacturer,
-//     this.model,
-//     this.status,
-//     this.year,
-//     this.horsepower,
-//     this.hourMeter,
-//     this.region,
-//     this.image,
-//     this.createdAt,
-//     this.updatedAt,
-//   );
-// }
+  Tractor(
+    this._id,
+    this.ownerId,
+    this.type,
+    this.manufacturer,
+    this.model,
+    this.status,
+    this.year,
+    this.horsepower,
+    this.hourMeter,
+    this.region,
+    this.image,
+    this.createdAt,
+    this.updatedAt,
+  );
+}
 
 class CombineHarvester {
   late String _id;
