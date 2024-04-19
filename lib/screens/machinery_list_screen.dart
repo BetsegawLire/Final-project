@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:amrpfe/screens/machinery_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import '../models/machinery_model.dart';
@@ -48,69 +49,74 @@ class _MachineryListScreenState extends State<MachineryListScreen> {
   }
 
   Widget buildTractorCard(Machinery machinery) {
-    return Card(
-      elevation: 3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            height: 90,
-            width: double.infinity,
-            child: Image.network(
-              "https://armada-server.glitch.me/api/machinery/Image/${machinery.image}",
-              fit: BoxFit.fill,
-              // scale: 1.1,
+    return GestureDetector(
+      onTap: () {
+        MachineryDetailsWidget();
+      },
+      child: Card(
+        elevation: 3,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 90,
+              width: double.infinity,
+              child: Image.network(
+                "https://armada-server.glitch.me/api/machinery/Image/${machinery.image}",
+                fit: BoxFit.fill,
+                // scale: 1.1,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        // height: 50,
-                        width: MediaQuery.of(context).size.width * 0.2,
-                        child: Text(
-                          '${machinery.manufacturer}',
-                          style: TextStyle(fontSize: 12),
-                        ),
-                      ),
-                      Expanded(
-                        child: SizedBox(
-                          // width: MediaQuery.of(context).size.width * 0.19,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          // height: 50,
+                          width: MediaQuery.of(context).size.width * 0.2,
                           child: Text(
-                            '${machinery.type}',
-                            textAlign: TextAlign.end,
+                            '${machinery.manufacturer}',
                             style: TextStyle(fontSize: 12),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        '${machinery.model}',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                      SizedBox(width: 20.0),
-                      Text(
-                        '${machinery.status}',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
-                  // Add other fields (year, horsepower, etc.) as needed
-                ],
+                        Expanded(
+                          child: SizedBox(
+                            // width: MediaQuery.of(context).size.width * 0.19,
+                            child: Text(
+                              '${machinery.type}',
+                              textAlign: TextAlign.end,
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          '${machinery.model}',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                        SizedBox(width: 20.0),
+                        Text(
+                          '${machinery.status}',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                    // Add other fields (year, horsepower, etc.) as needed
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -122,14 +128,14 @@ Future<List<Machinery>> fetchTractors() async {
   var jsonData = json.decode(response.body);
   List<Machinery> machinerys = [];
 
-  for (var tractorData in jsonData) {
+  for (var machineryData in jsonData) {
     Machinery machinery = Machinery(
-      tractorData['_id'],
-      tractorData['type'],
-      tractorData['manufacturer'],
-      tractorData['model'],
-      tractorData['status'],
-      tractorData['image'],
+      machineryData['_id'],
+      machineryData['type'],
+      machineryData['manufacturer'],
+      machineryData['model'],
+      machineryData['status'],
+      machineryData['image'],
     );
     machinerys.add(machinery);
   }
