@@ -1,5 +1,5 @@
 class Machinery {
-  late String _id;
+  late String id;
   late String type;
   late String manufacturer;
   late String model;
@@ -8,7 +8,7 @@ class Machinery {
   late String image;
 
   Machinery(
-    this._id,
+    this.id,
     this.type,
     this.manufacturer,
     this.model,

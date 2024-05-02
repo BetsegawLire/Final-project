@@ -16,7 +16,7 @@ class _MachineryListScreenState extends State<MachineryListScreen> {
   @override
   void initState() {
     super.initState();
-    machinerys = fetchTractors(); // Fetch tractors on widget initialization
+    machinerys = fetchMachinerys(); // Fetch tractors on widget initialization
   }
 
   @override
@@ -40,7 +40,7 @@ class _MachineryListScreenState extends State<MachineryListScreen> {
             mainAxisSpacing: 10.0,
             padding: EdgeInsets.all(10.0),
             children: machinerys.map((machinery) {
-              return buildTractorCard(machinery);
+              return buildMachineryCard(machinery);
             }).toList(),
           );
         },
@@ -48,10 +48,16 @@ class _MachineryListScreenState extends State<MachineryListScreen> {
     );
   }
 
-  Widget buildTractorCard(Machinery machinery) {
+  Widget buildMachineryCard(Machinery machinery) {
     return GestureDetector(
       onTap: () {
-        MachineryDetailsWidget();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MachineryDetailsWidget(
+                id: machinery.id), // Pass the machinery ID
+          ),
+        );
       },
       child: Card(
         elevation: 3,
@@ -122,7 +128,7 @@ class _MachineryListScreenState extends State<MachineryListScreen> {
   }
 }
 
-Future<List<Machinery>> fetchTractors() async {
+Future<List<Machinery>> fetchMachinerys() async {
   var response = await http
       .get(Uri.parse("https://armada-server.glitch.me/api/machinery"));
   var jsonData = json.decode(response.body);
